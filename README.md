@@ -99,10 +99,9 @@ export default App;
 ===============================================================
 E:\ecom_project\ecom_main_project\src\router\routers\publicRoutes.jsx
 ===============================================================
-import Login from '../../views/auth/Login'
-import Register from '../../views/auth/Register'
+
 import {lazy} from 'react'
-import Login from './../../views/auth/Login';
+
 
 
 const Login = lazy(() => import('../../views/auth/Login'));
@@ -172,8 +171,51 @@ const publicRoutes = [
 // and configure the routing logic based on these definitions.
 export default publicRoutes;
 ===============================================================
-
+E:\ecom_project\ecom_main_project\src\App.jsx
 ===============================================================
+import React, { useState } from 'react';
+import './App.css'
+import Router from './router/Router';
+import publicRoutes from './router/routers/publicRoutes';
+function App() {
+  const [allRoutes,setAllRoutes] = useState([...publicRoutes]);
+  console.log("All Routes:", allRoutes);
+  return <Router allRoutes={allRoutes}/>
+}
+
+export default App;
+
+
+// Imports the React library, along with the 'useState' Hook, which is necessary for managing component state.
+import React, { useState } from 'react';
+
+// Imports the main application styling from the local directory.
+import './App.css'
+
+// Imports the 'Router' component, which is responsible for rendering the correct view based on the current URL.
+import Router from './router/Router';
+
+// Imports the array of public route configurations from the designated file.
+import publicRoutes from './router/routers/publicRoutes';
+
+// Defines the main application component.
+function App() {
+    // Declares a state variable 'allRoutes' and its updater function 'setAllRoutes' using the useState Hook.
+    // The initial state is set by spreading the imported 'publicRoutes' array (e.g., [LoginRoute, RegisterRoute]).
+    // Using the spread operator ([...publicRoutes]) ensures 'allRoutes' is a mutable copy of the original array.
+    const [allRoutes,setAllRoutes] = useState([...publicRoutes]);
+
+    // Logs the current list of routes to the browser console for debugging or verification purposes.
+    console.log("All Routes:", allRoutes);
+
+    // The component returns the Router component, passing the 'allRoutes' state as a prop.
+    // The Router component will use this list to configure navigation paths.
+    return <Router allRoutes={allRoutes}/>
+}
+
+// Exports the App component so it can be mounted to the root of the application (e.g., in index.js).
+export default App;
+
 
 ===============================================================
 
