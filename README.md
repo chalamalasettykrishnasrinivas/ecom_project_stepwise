@@ -218,9 +218,283 @@ export default App;
 
 
 ===============================================================
-
+File: src/pages/Register.jsx 
 ===============================================================
 
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
+
+
+const Register = () => {
+  return (
+    <div className='min-w-screen min-h-screen bg-[#cdcae9] flex justify-center items-center'>
+      <div className='w-[400px] text-white'>
+        <div className='bg-[#6f68d1] p-6 rounded-md'>
+          <h2 className='text-2xl mb-3 flex justify-center  items-center'>welcome to JS Store</h2>
+          <p className='text-sm mb-3 mt-2 flex justify-center  items-center'>Please register your account</p>
+
+          <form>
+            {/* Username */}
+            <div className='flex flex-col w-full gap-1 mb-3'>
+              <label htmlFor='name'>Username</label>
+              <input
+                type='text'
+                id='name'
+                placeholder='Name'
+                required
+                className='w-full px-4 py-2 outline-none border border-slate-700 bg-transparent rounded-md text-white'
+              />
+            </div>
+
+            {/* Email */}
+            <div className='flex flex-col w-full gap-1 mb-3'>
+              <label htmlFor='email'>Email</label>
+              <input
+                type='email'
+                id='email'
+                placeholder='Email'
+                required
+                className='w-full px-4 py-2 outline-none border border-slate-700 bg-transparent rounded-md text-white'
+              />
+            </div>
+
+            {/* Password */}
+            <div className='flex flex-col w-full gap-1 mb-3'>
+              <label htmlFor='password'>Password</label>
+              <input
+                type='password'
+                id='password'
+                placeholder='Password'
+                required
+                className='w-full px-4 py-2 outline-none border border-slate-700 bg-transparent rounded-md text-white'
+              />
+            </div>
+
+            {/* Checkbox */}
+            <div className='flex items-center gap-3 mb-3'>
+              <input
+                type='checkbox'
+                id='remember'
+                className='w-4 h-4 text-blue-600 bg-green-400 rounded border-gray-300 focus:ring-blue-500'
+              />
+              <label htmlFor='remember' className='text-sm'>
+                I agree to privacy policy & terms
+              </label>
+            </div>
+
+            {/* Sign Up Button */}
+            <button
+              type='submit'
+              className='w-full bg-slate-800 rounded-md hover:bg-[#3b37a6] text-white px-4 py-2 mb-3'
+            >
+              Sign Up
+            </button>
+
+            {/* Sign In link */}
+            <div className='flex items-center mb-3 gap-3 justify-center text-sm'>
+              <p>
+                Already have an account?
+                <Link className='font-bold ml-1' to='/login'>
+                  Sign In
+                </Link>
+              </p>
+            </div>
+
+            {/* Divider */}
+            <div className='w-full flex items-center mb-3 justify-center'>
+              <div className='w-[45%] bg-slate-800 h-[1px]'></div>
+              <div className='w-[10%] flex items-center justify-center'>
+                <span className='pb-1'>Or</span>
+              </div>
+              <div className='w-[45%] bg-slate-800 h-[1px]'></div>
+            </div>
+
+            {/* Social Buttons */}
+            <div className='flex items-center gap-3 justify-center'>
+              <div className='w-[135px] h-[35px]   bg-yellow-400 rounded-md hover:bg-yellow-600 flex shadow-lg overflow-hidden  justify-center cursor-pointer items-center  py-2'>
+                <span><FcGoogle /></span> 
+              </div>
+              <div className='w-[135px] h-[35px] bg-blue-400 rounded-md hover:bg-blue-600 flex shadow-lg overflow-hidden  justify-center cursor-pointer items-center  py-2'>
+                <span><FaFacebook /></span>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Register
+_________________________
+
+// Imports the React library. Although not explicitly used as "React.something" here, 
+// it's essential for compiling JSX (the HTML-like syntax) into actual JavaScript function calls.
+import React from 'react'
+
+// Imports the Link component from 'react-router-dom'. This is used instead of a standard <a> tag
+// for internal navigation, which prevents a full page reload, keeping the app fast.
+import { Link } from 'react-router-dom'
+
+// Imports Chrome (for Google) and Facebook icons from the Lucide React library.
+// This replaces the non-resolvable 'react-icons' dependencies.
+import { Chrome, Facebook } from 'lucide-react';
+
+
+// Defines the functional React component named 'Register'.
+// This component currently handles only the presentation (UI) of the registration form.
+const Register = () => {
+    // The component returns the JSX structure representing the registration page.
+    return (
+        // Main container div for the entire page.
+        // min-w-screen min-h-screen: Ensures the container covers the full width and height of the viewport.
+        // bg-[#cdcae9]: Sets a light, pleasant background color (likely a muted lavender).
+        // flex justify-center items-center: Centers the form card both horizontally and vertically on the screen.
+        <div className='min-w-screen min-h-screen bg-[#cdcae9] flex justify-center items-center'>
+            {/* Form Wrapper Card: Limits the form size for readability. */}
+            {/* w-[400px]: Sets a fixed width for the card (400 pixels). */}
+            {/* text-white: Sets the default text color for all content inside the card to white. */}
+            <div className='w-[400px] text-white'>
+                {/* Inner Form Content Area */}
+                {/* bg-[#6f68d1]: Sets a darker purple/indigo background for the form itself. */}
+                {/* p-6: Adds generous padding (paddig-6, typically 1.5rem) inside the form card. */}
+                {/* rounded-md: Applies medium rounded corners to the card. */}
+                <div className='bg-[#6f68d1] p-6 rounded-md'>
+                    {/* Title */}
+                    {/* text-2xl: Sets the font size to 2XL. */}
+                    {/* mb-3: Adds margin to the bottom (margin-bottom-3). */}
+                    {/* flex justify-center items-center: Centers the text horizontally. */}
+                    <h2 className='text-2xl mb-3 flex justify-center  items-center'>Welcome to JS Store</h2>
+                    
+                    {/* Subtitle/Instruction */}
+                    {/* text-sm: Sets the font size to small. */}
+                    {/* mt-2: Adds margin to the top. */}
+                    <p className='text-sm mb-3 mt-2 flex justify-center  items-center'>Please register your account</p>
+
+                    {/* The registration form element. Logic (like onSubmit) would be attached here later. */}
+                    <form>
+                        {/* --- Username Field --- */}
+                        <div className='flex flex-col w-full gap-1 mb-3'>
+                            <label htmlFor='name'>Username</label>
+                            <input
+                                type='text'
+                                id='name'
+                                placeholder='Name'
+                                required // Standard HTML attribute to enforce filling out the field.
+                                // Styling for the input field:
+                                // w-full: Takes up 100% of the parent width.
+                                // px-4 py-2: Horizontal padding of 4 and vertical padding of 2.
+                                // outline-none: Removes the default focus outline.
+                                // border border-slate-700: Adds a dark border.
+                                // bg-transparent: Ensures the input background is clear.
+                                // rounded-md: Adds rounded corners to the input.
+                                // text-white: Sets the input text color to white.
+                                className='w-full px-4 py-2 outline-none border border-slate-700 bg-transparent rounded-md text-white'
+                            />
+                        </div>
+
+                        {/* --- Email Field --- */}
+                        <div className='flex flex-col w-full gap-1 mb-3'>
+                            <label htmlFor='email'>Email</label>
+                            <input
+                                type='email' // Specific type for email validation.
+                                id='email'
+                                placeholder='Email'
+                                required
+                                className='w-full px-4 py-2 outline-none border border-slate-700 bg-transparent rounded-md text-white'
+                            />
+                        </div>
+
+                        {/* --- Password Field --- */}
+                        <div className='flex flex-col w-full gap-1 mb-3'>
+                            <label htmlFor='password'>Password</label>
+                            <input
+                                type='password' // Hides the characters as they are typed.
+                                id='password'
+                                placeholder='Password'
+                                required
+                                className='w-full px-4 py-2 outline-none border border-slate-700 bg-transparent rounded-md text-white'
+                            />
+                        </div>
+
+                        {/* --- Checkbox for Terms and Conditions --- */}
+                        <div className='flex items-center gap-3 mb-3'>
+                            <input
+                                type='checkbox'
+                                id='remember'
+                                // Standard Tailwind/CSS styling for the checkbox appearance:
+                                // w-4 h-4: Sets the width and height.
+                                // text-blue-600: Sets the checkmark color.
+                                // bg-green-400: Sets the background color (Note: This might be overridden by the system/browser).
+                                className='w-4 h-4 text-blue-600 bg-green-400 rounded border-gray-300 focus:ring-blue-500'
+                            />
+                            <label htmlFor='remember' className='text-sm'>
+                                I agree to privacy policy & terms
+                            </label>
+                        </div>
+
+                        {/* --- Sign Up Button --- */}
+                        <button
+                            type='submit' // Submits the form data when clicked.
+                            // w-full: Full width button.
+                            // bg-slate-800: Dark slate background color.
+                            // hover:bg-[#3b37a6]: Changes background color on hover for visual feedback.
+                            // px-4 py-2: Padding inside the button.
+                            className='w-full bg-slate-800 rounded-md hover:bg-[#3b37a6] text-white px-4 py-2 mb-3'
+                        >
+                            Sign Up
+                        </button>
+
+                        {/* --- Sign In Link --- */}
+                        <div className='flex items-center mb-3 gap-3 justify-center text-sm'>
+                            <p>
+                                Already have an account?
+                                {/* Link component for internal navigation to the /login path. */}
+                                {/* font-bold ml-1: Makes the link text bold and adds a small margin to the left. */}
+                                <Link className='font-bold ml-1' to='/login'>
+                                    Sign In
+                                </Link>
+                            </p>
+                        </div>
+
+                        {/* --- Divider for "Or" --- */}
+                        <div className='w-full flex items-center mb-3 justify-center'>
+                            {/* Left Line of the Divider */}
+                            <div className='w-[45%] bg-slate-800 h-[1px]'></div>
+                            {/* "Or" Text Container */}
+                            <div className='w-[10%] flex items-center justify-center'>
+                                <span className='pb-1'>Or</span>
+                            </div>
+                            {/* Right Line of the Divider */}
+                            <div className='w-[45%] bg-slate-800 h-[1px]'></div>
+                        </div>
+
+                        {/* --- Social Login Buttons --- */}
+                        <div className='flex items-center gap-3 justify-center'>
+                            {/* Google Button (Now using Lucide Chrome icon) */}
+                            <div className='w-[135px] h-[35px] bg-yellow-400 rounded-md hover:bg-yellow-600 flex shadow-lg overflow-hidden justify-center cursor-pointer items-center py-2'>
+                                {/* Renders the Lucide Chrome icon, styled to look like a Google icon */}
+                                <span><Chrome className='w-5 h-5 text-slate-800' /></span> 
+                            </div>
+                            {/* Facebook Button (Now using Lucide Facebook icon) */}
+                            <div className='w-[135px] h-[35px] bg-blue-400 rounded-md hover:bg-blue-600 flex shadow-lg overflow-hidden justify-center cursor-pointer items-center py-2'>
+                                {/* Renders the Lucide Facebook icon, styled for visibility */}
+                                <span><Facebook className='w-5 h-5 text-white' /></span>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Exports the Register component so it can be imported by other files (like the router/publicRoutes.js file).
+export default Register
 ===============================================================
 
 ===============================================================

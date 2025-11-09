@@ -92,10 +92,10 @@ const Register = () => {
             {/* Social Buttons */}
             <div className='flex items-center gap-3 justify-center'>
               <div className='w-[135px] h-[35px]   bg-yellow-400 rounded-md hover:bg-yellow-600 flex shadow-lg overflow-hidden  justify-center cursor-pointer items-center  py-2'>
-                <FcGoogle />
+                <span><FcGoogle /></span> 
               </div>
               <div className='w-[135px] h-[35px] bg-blue-400 rounded-md hover:bg-blue-600 flex shadow-lg overflow-hidden  justify-center cursor-pointer items-center  py-2'>
-                <FaFacebook />
+                <span><FaFacebook /></span>
               </div>
             </div>
             
