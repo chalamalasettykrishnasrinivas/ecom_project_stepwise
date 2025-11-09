@@ -496,9 +496,71 @@ const Register = () => {
 // Exports the Register component so it can be imported by other files (like the router/publicRoutes.js file).
 export default Register
 ===============================================================
-
+E:\ecom_project\ecom_main_project\src\main.jsx
 ===============================================================
+import React,{lazy,Suspense } from 'react'
 
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import { BrowserRouter } from 'react-router-dom';
+
+
+
+
+const App = lazy(() => import('./App.jsx'));
+createRoot(document.getElementById('root')).render(
+
+
+  <BrowserRouter >
+  <Suspense> 
+    <App />
+  </Suspense>
+  </BrowserRouter>
+
+
+)
+
+
+
+
+
+
+
+// Imports the React library and necessary Hooks, though only 'lazy' and 'Suspense' are used directly from it here.
+import React,{lazy,Suspense } from 'react'
+
+// Imports the createRoot function, which is the modern way to hydrate a React application to the DOM.
+import { createRoot } from 'react-dom/client'
+
+// Imports the main CSS file for global styles.
+import './index.css'
+
+// Imports the BrowserRouter component, which uses the HTML5 history API 
+// (pushState, replaceState, and the popstate event) to keep your UI in sync with the URL.
+import { BrowserRouter } from 'react-router-dom';
+
+
+// Dynamically defines the App component using React's 'lazy' function.
+// This splits the main App bundle into a separate chunk that is only loaded after the initial setup,
+// which improves the application's initial load time.
+const App = lazy(() => import('./App.jsx'));
+
+// Gets the root DOM element (usually <div id="root">) and initializes the React root instance.
+// This is where the entire React application will be mounted.
+createRoot(document.getElementById('root')).render(
+
+    // Wraps the entire application in BrowserRouter to provide routing context to all nested components.
+    <BrowserRouter >
+        {/* Suspense is REQUIRED when using 'lazy' components (like the App component above). */}
+        {/* It renders a fallback UI (not explicitly provided here, but often a loading spinner) */}
+        {/* while the lazy-loaded component (App.jsx) is being fetched. */}
+        <Suspense> 
+            {/* The main application component, which will, in turn, load the Router component. */}
+            <App />
+        </Suspense>
+    </BrowserRouter>
+
+)
 ===============================================================
 
 ===============================================================
