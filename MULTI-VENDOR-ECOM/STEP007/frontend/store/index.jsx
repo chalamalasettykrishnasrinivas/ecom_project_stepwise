@@ -12,4 +12,4 @@ devTools: true,
 });
 
 export default store;
-   
+

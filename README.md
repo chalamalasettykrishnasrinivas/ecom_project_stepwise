@@ -881,7 +881,7 @@ import axios from 'axios';
 // Creates a custom instance of Axios with predefined configuration.
 const api = axios.create ({
     // Sets the base URL that will prefix all endpoints used with this 'api' instance.
-    baseURL : 'http://localhost:5173/api/'
+    baseURL : 'http://localhost:5000/api/'
 })
 
 // Exports the configured Axios instance for use in thunks across the application.

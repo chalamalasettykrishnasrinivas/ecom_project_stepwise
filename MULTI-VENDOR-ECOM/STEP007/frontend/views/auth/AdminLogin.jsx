@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { admin_login } from '../../store/Reducers/authReducers';
+import { admin_login } from  '../../store/Reducers/authReducers';
 
 const AdminLogin = () => {
   const dispatch = useDispatch();
