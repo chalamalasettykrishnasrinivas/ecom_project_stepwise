@@ -1,11 +1,13 @@
 // =======================  File: src/pages/Register.jsx  ======================//
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { admin_login } from '../../store/Reducers/authReducers';
 
-const Login = () => {
+const AdminLogin = () => {
+  const dispatch = useDispatch();
+
           const [ state,setState] = useState(
               {
                   
@@ -21,15 +23,20 @@ const Login = () => {
       
           const submit = (e) => {
               e.preventDefault();
+              dispatch(admin_login (state));
               console.log("Form submitted:", state);
           }
   return (
     <div className='min-w-screen min-h-screen bg-[#cdcae9] flex justify-center items-center'>
       <div className='w-[400px] text-white'>
         <div className='bg-[#6f68d1] p-6 rounded-md'>
-          <h2 className='text-2xl mb-3 flex justify-center  items-center'>welcome to JS Store</h2>
-          <p className='text-sm mb-3 mt-2 flex justify-center  items-center'>Please Sign In your account</p>
-
+          {/* <h2 className='text-2xl mb-3 flex justify-center  items-center'>welcome to JS Store</h2>
+          <p className='text-sm mb-3 mt-2 flex justify-center  items-center'>Please Sign In your account</p> */}
+        <div className='h-[70px] flex justify-center items-center'>
+            <div className='w-[180px] h-[50px] mb-10'>
+                 <img  className="w-full" src='http://localhost:5173/JSstoreLogo.png' alt='JSstorelogo'/>
+            </div>
+        </div>
           <form onSubmit={submit}>
 
 
@@ -68,39 +75,15 @@ const Login = () => {
             {/* Sign Up Button */}
             <button
               type='submit'
-              className='w-full bg-slate-800 rounded-md hover:bg-[#3b37a6] text-white px-4 py-2 mb-3'
+              className='w-full bg-blue-400 rounded-md hover:bg-blue-300 text-white hover:text-blue-900 font-bold px-4 py-2 mb-3 mt-3'
             >
               Sign In
             </button>
 
-            {/* Sign In link */}
-            <div className='flex items-center mb-3 gap-3 justify-center text-sm'>
-              <p>
-                Dont have  have an account?
-                <Link className='font-bold ml-1' to='/register'>
-                  Sign Up
-                </Link>
-              </p>
-            </div>
 
-            {/* Divider */}
-            <div className='w-full flex items-center mb-3 justify-center'>
-              <div className='w-[45%] bg-slate-800 h-[1px]'></div>
-              <div className='w-[10%] flex items-center justify-center'>
-                <span className='pb-1'>Or</span>
-              </div>
-              <div className='w-[45%] bg-slate-800 h-[1px]'></div>
-            </div>
 
-            {/* Social Buttons */}
-            <div className='flex items-center gap-3 justify-center'>
-              <div className='w-[135px] h-[35px]   bg-gray-300 rounded-md hover:bg-gray-100 flex shadow-lg overflow-hidden  justify-center cursor-pointer items-center  py-2'>
-                <span><FcGoogle /></span> 
-              </div>
-              <div className='w-[135px] h-[35px] bg-blue-400 rounded-md hover:bg-blue-600 flex shadow-lg overflow-hidden  justify-center cursor-pointer items-center  py-2'>
-                <span><FaFacebook /></span>
-              </div>
-            </div>
+
+
             
           </form>
         </div>
@@ -109,4 +92,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default AdminLogin

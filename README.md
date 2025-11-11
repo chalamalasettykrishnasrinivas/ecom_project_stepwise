@@ -562,12 +562,198 @@ createRoot(document.getElementById('root')).render(
 
 )
 ===============================================================
-
+E:\ecom_project\ecom_main_project\src\router\routers\publicRoutes.jsx
 ===============================================================
+// Imports the 'lazy' function from the React library.
+// This function is essential for implementing code splitting, which asynchronously loads
+// components only when they are needed, improving the application's initial load performance.
+import {lazy} from 'react'
 
-===============================================================
+// Defines the 'Login' component. 'lazy' takes a function that returns a dynamic import()
+// call, pointing to the location of the actual component file. This ensures the Login bundle is separate.
+const Login = lazy(() => import('../../views/auth/Login'));
 
+// Defines the 'Register' component using lazy loading, ensuring its bundle is separate
+// and only loaded when the user navigates to the registration page.
+const Register = lazy(() => import('../../views/auth/Register'));
+
+// Defines the 'AdminLogin' component using lazy loading. Isolating this component
+// ensures that administrative code is not downloaded by general users by default.
+const AdminLogin = lazy(() => import('../../views/auth/AdminLogin'));
+
+// Starts the declaration of the 'publicRoutes' array. This array holds configuration
+// objects used by a router (like React Router DOM) to map URLs to components for
+// unauthenticated access.
+const publicRoutes = [
+// Starts the configuration object for the standard User Login route.
+{
+// Specifies the URL path that the router listens for (e.g., /login).
+path: '/login',
+
+    // Specifies the React element (component) to render when the path matches. 
+    // Note: This lazy component must be wrapped in <Suspense> in the main router.
+    element: <Login/>,
+
+// Ends the login route configuration object.
+},
+// Starts the configuration object for the User Registration route.
+{
+    // Specifies the URL path for registration.
+    path: '/register',
+    
+    // Specifies the lazy-loaded Register component to be rendered upon access.
+    element: <Register/>,
+},
+// Starts the configuration object for the Administrative Login route.
+{
+    // Specifies the dedicated, more specific URL path for admin sign-in access.
+    path: '/admin/login',
+    
+    // Specifies the lazy-loaded AdminLogin component to render for administrators.
+    element: <AdminLogin/>,
+}
+
+
+// Ends the publicRoutes array definition.
+]
+
+// Exports the complete publicRoutes array as the default export of this module,
+// allowing the main application router to consume and process this configuration list.
+export default publicRoutes;
 ===============================================================
+REDUX TOOLKIT SETUP BASIC LEVEL
+===============================================================
+E:\ecom_project\ecom_main_project\src\store\Reducers\authReducers.jsx
+
+import {createSlice} from "@reduxjs/toolkit";
+
+export const authReducer = createSlice({
+    name: 'auth',
+    initialState: { 
+        successMessage: '',
+        errorMessage: '',
+        loader: false,
+        userInfo: "",
+    },
+    reducers: {
+
+    },
+    extraReducers: {
+
+    }
+
+})
+
+export default authReducer.reducer;
+
+E:\ecom_project\ecom_main_project\src\store\index.jsx
+
+import {configureStore} from '@reduxjs/toolkit'; 
+import rootReducer from './rootReducers';
+
+const store = configureStore({
+    reducer : rootReducer
+})
+
+E:\ecom_project\ecom_main_project\src\store\rootReducers.jsx
+
+import authReducer from './auth/authReducer';
+
+const rootReducer = { 
+    auth: authReducer
+}
+
+
+export default rootReducer;
+================================================================
+I'll provide detailed comments for each line of your Redux setup code:
+
+## 1. Auth Reducer (`authReducers.jsx`)
+
+
+// Importing createSlice function from Redux Toolkit
+// createSlice automatically generates action creators and action types
+import { createSlice } from "@reduxjs/toolkit";
+
+// Creating a slice for authentication-related state management
+// A slice contains reducers and actions for a specific feature
+export const authReducer = createSlice({
+    // Unique name for this slice, used in Redux DevTools
+    name: 'auth',
+    
+    // Initial state definition for the auth slice
+    // This is the starting point before any actions are dispatched
+    initialState: { 
+        successMessage: '',    // To store success messages (e.g., login success)
+        errorMessage: '',      // To store error messages (e.g., login failure)
+        loader: false,         // Loading state (true/false) for async operations
+        userInfo: "",          // To store user data after successful authentication
+    },
+    
+    // Reducers define how state changes in response to actions
+    // These are synchronous actions that directly modify state
+    reducers: {
+        // Currently empty - you can add reducers here for synchronous actions
+        // Example: loginSuccess, logout, clearMessages, etc.
+    },
+    
+    // extraReducers handles actions defined outside of createSlice
+    // Typically used for handling async actions from createAsyncThunk
+    extraReducers: {
+        // Currently empty - you can add cases for async actions here
+        // Example: handling pending/fulfilled/rejected states of API calls
+    }
+})
+
+// Exporting the reducer function to be used in the store configuration
+// This is what actually manages state updates for the auth slice
+export default authReducer.reducer;
+
+
+## 2. Store Configuration (`index.jsx`)
+
+
+// Importing configureStore function from Redux Toolkit
+// configureStore provides good defaults and simplifies store setup
+import { configureStore } from '@reduxjs/toolkit'; 
+
+// Importing the combined root reducer that contains all slice reducers
+import rootReducer from './rootReducers';
+
+// Creating the Redux store instance
+// The store holds the complete state tree of the application
+const store = configureStore({
+    // Combining all reducers into a single reducer function
+    // rootReducer contains all the individual slice reducers
+    reducer: rootReducer
+})
+
+// Note: You should export the store to use it in your application
+// Add: export default store;
+
+
+## 3. Root Reducer (`rootReducers.jsx`)
+
+
+// Importing the authReducer from the auth slice
+// This is one of the feature reducers that will be combined
+import authReducer from './auth/authReducer';
+
+// Creating the root reducer object
+// This object combines all individual reducers for different slices of state
+// Each key represents a branch in the Redux state tree
+const rootReducer = { 
+    auth: authReducer  // The auth slice state will be accessible via state.auth
+    // You can add more reducers here as your app grows:
+    // products: productsReducer,
+    // cart: cartReducer,
+    // etc.
+}
+
+// Exporting the root reducer to be used in store configuration
+// configureStore will automatically combine these reducers
+export default rootReducer;
+
 
 ===============================================================
 
